@@ -17,3 +17,15 @@ export function getTasks() {
         },
     ]
 }
+
+export function createTask(taskName) {
+
+}
+
+export function changeTaskStatus(id, isCompleted) {
+
+}
+
+export function deleteTask(id) {
+
+}

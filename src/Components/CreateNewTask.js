@@ -1,7 +1,18 @@
 import { useState } from "react";
+import { createTask } from "../API/tasks";
 
-function CreateNewTask() {
+function CreateNewTask(props) {
+    const { loadTasks } = props
     const [newTaskName, setNewTaskName] = useState('')
+    const [taskCreating, setTaskCreating] = useState(false)
+
+    const createTaskAction = () => {
+        setTaskCreating(true)
+        createTask(newTaskName)
+        setTaskCreating(false)
+        loadTasks()
+        setNewTaskName('')
+    }
 
     return (
         <div>
@@ -12,7 +23,13 @@ function CreateNewTask() {
                 onChange={(event) => setNewTaskName(event.target.value)} 
                 id="new-task-name"
             />
-            <button className="btn btn-success">Add task</button>
+            <button 
+                className="btn btn-success" 
+                disabled={taskCreating}
+                onClick={createTaskAction}
+            >
+                Add task
+            </button>
       </div>
     );
 }
