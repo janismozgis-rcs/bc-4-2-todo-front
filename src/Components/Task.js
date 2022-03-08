@@ -1,3 +1,6 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
+
 import { useState } from "react";
 import { changeTaskStatus, deleteTask } from "../API/tasks";
 
@@ -25,7 +28,7 @@ function Task(props) {
                 disabled={taskChanging}
                 onClick={deleteTaskAction}
             >
-                Delete
+                <FontAwesomeIcon icon={faTrashCan} />
             </button>
     }
 
