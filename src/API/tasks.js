@@ -1,31 +1,32 @@
-export function getTasks() {
-    return [
-        {
-            id: 11,
-            task: 'Foo',
-            isCompleted: false,
-        },
-        {
-            id: 12,
-            task: 'Bar',
-            isCompleted: true,
-        },
-        {
-            id: 13,
-            task: 'Baz',
-            isCompleted: false,
-        },
-    ]
+import axios from "axios";
+
+const baseUrl = 'http://localhost:3000/tasks'
+
+export async function getTasks() {
+    const response = await axios.get(baseUrl)
+
+    return response.data
 }
 
-export function createTask(taskName) {
+export async function createTask(taskName) {
+    const data = {
+        title: taskName,
+    }
 
+    await axios.post(baseUrl, data)
 }
 
-export function changeTaskStatus(id, isCompleted) {
+export async function changeTaskStatus(id, isCompleted, title) {
+    const data = {
+        title: title,
+        isCompleted: isCompleted,
+    }
+    const url = `${baseUrl}/${id}`
 
+    await axios.put(url, data)
 }
 
-export function deleteTask(id) {
-
+export async function deleteTask(id) {
+    const url = `${baseUrl}/${id}`
+    await axios.delete(url)
 }

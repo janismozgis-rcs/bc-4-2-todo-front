@@ -7,9 +7,9 @@ function App() {
     const [tasks, setTasks] = useState([])
     const [tasksLoading, setTasksLoading] = useState(true)
 
-    const loadTasks = () => {
+    const loadTasks = async () => {
         setTasksLoading(true)
-        const tasksFromBackend = getTasks()
+        const tasksFromBackend = await getTasks()
         setTasks(tasksFromBackend)
         setTasksLoading(false)
     }

@@ -5,16 +5,16 @@ function Task(props) {
     const { task, loadTasks } = props
     const [taskChanging, setTaskChanging] = useState(false)
 
-    const changeIsCompletedState = () => {
+    const changeIsCompletedState = async () => {
         setTaskChanging(true)
-        changeTaskStatus(task.id, !task.isCompleted)
-        loadTasks()
+        await changeTaskStatus(task._id, !task.isCompleted, task.title)
+        await loadTasks()
     }
 
-    const deleteTaskAction = () => {
+    const deleteTaskAction = async () => {
         setTaskChanging(true)
-        deleteTask(task.id)
-        loadTasks()
+        await deleteTask(task._id)
+        await loadTasks()
     }
 
 
@@ -37,7 +37,7 @@ function Task(props) {
                 disabled={taskChanging}
                 onChange={changeIsCompletedState}
             />
-            <span>{task.task}</span>
+            <span>{task.title}</span>
             {deleteBtn}
         </li>
     );

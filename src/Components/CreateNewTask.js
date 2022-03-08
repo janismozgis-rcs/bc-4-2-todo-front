@@ -6,11 +6,11 @@ function CreateNewTask(props) {
     const [newTaskName, setNewTaskName] = useState('')
     const [taskCreating, setTaskCreating] = useState(false)
 
-    const createTaskAction = () => {
+    const createTaskAction = async () => {
         setTaskCreating(true)
-        createTask(newTaskName)
+        await createTask(newTaskName)
         setTaskCreating(false)
-        loadTasks()
+        await loadTasks()
         setNewTaskName('')
     }
 
